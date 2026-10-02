@@ -39,17 +39,28 @@ const menuData = [
   ]}
 ];
 
-const photoMap = {
-  malfouf: "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=900&q=85",
-  burger: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85",
-  shawarma: "https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=85",
-  tacos: "https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=900&q=85",
-  pizza: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85",
-  sandwich: "https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=900&q=85",
-  soufflee: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85",
-  plats: "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85",
-  entrees: "https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=85"
+const foodImages = {
+  malfouf:'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=85',
+  burger:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85',
+  shawarma:'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?auto=format&fit=crop&w=900&q=85',
+  tacos:'https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?auto=format&fit=crop&w=900&q=85',
+  pizza:'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85',
+  sandwich:'https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&w=900&q=85',
+  soufflee:'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+  plats:'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=85',
+  entrees:'https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?auto=format&fit=crop&w=900&q=85'
 };
+
+function imageFor(group,item){
+  const n=item.name.toLowerCase();
+  if(group.id==='pizza') {
+    if(n.includes('crevette')) return 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=85';
+    return foodImages.pizza;
+  }
+  if(group.id==='plats' && n.includes('poutine')) return 'https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=900&q=85';
+  if(group.id==='entrees' && n.includes('borek')) return 'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=900&q=85';
+  return foodImages[group.id] || foodImages.malfouf;
+}
 
 let order = [];
 const money = n => `${n.toLocaleString("fr-FR")} DA`;
@@ -59,7 +70,7 @@ function renderMenu(filter="all"){
   const groups=filter==="all"?menuData:menuData.filter(g=>g.id===filter);
   products.innerHTML=groups.flatMap(group=>group.items.map((item,idx)=>`
     <article class="product">
-      <div class="product-img photo-wrap"><img src="${photoMap[group.id]}" alt="${escapeHtml(item.name)}" loading="lazy"></div>
+      <div class="product-img"><img src="${imageFor(group,item)}" alt="${item.name.replace(/"/g,'&quot;')}" loading="lazy"><span class="img-badge">${group.name.replace(/^[^\p{L}]*/u,'')}</span></div>
       <span class="eyebrow">${group.name.replace(/^[^\u0000-\u007F]+/,"").trim()}</span>
       <h3>${item.name}</h3>
       ${item.prices.length>1 ? `<div class="size-list">${item.prices.map((p,i)=>`<button class="size-btn" onclick="addToOrder('${escapeAttr(item.name+" ("+p[0]+")")}',${p[1]})">${p[0]} — ${money(p[1])}</button>`).join("")}</div>` :
@@ -67,7 +78,6 @@ function renderMenu(filter="all"){
     </article>`)).join("");
 }
 
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
 function escapeAttr(s){return s.replace(/\\/g,"\\\\").replace(/'/g,"\\'");}
 
 function renderCategories(){
