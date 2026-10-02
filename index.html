@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pita Pit 2 | بيتا بيت 2</title>
+  <meta name="description" content="Pita Pit 2 - مطعم الوجبات السريعة والبيتا الطازجة">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#home">PITA <span>PIT 2</span></a>
+      <button class="menu-btn" aria-label="فتح القائمة">☰</button>
+      <nav class="links">
+        <a href="#home">الرئيسية</a>
+        <a href="#menu">القائمة</a>
+        <a href="#about">من نحن</a>
+        <a href="#contact">تواصل معنا</a>
+      </nav>
+      <a class="order-top" href="#menu">اطلب الآن</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="badge">🔥 طازج • سريع • لذيذ</span>
+          <h1>نكهة تحبها،<br><span>بطريقة Pita Pit 2</span></h1>
+          <p>بيتا شهية، مكونات طازجة، وصلصات مميزة. اختر وجبتك واستمتع بطعم مختلف.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#menu">شاهد القائمة</a>
+            <a class="btn secondary" href="#contact">تواصل معنا</a>
+          </div>
+          <div class="mini-stats">
+            <div><strong>100%</strong><span>طازج</span></div>
+            <div><strong>⭐ 4.9</strong><span>تقييم العملاء</span></div>
+            <div><strong>⚡ سريع</strong><span>في التحضير</span></div>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="food-circle">🥙</div>
+          <div class="floating f1">🍟</div>
+          <div class="floating f2">🥤</div>
+          <div class="hero-card-content">
+            <span>الأكثر طلبًا</span>
+            <h3>Chicken Pita</h3>
+            <p>دجاج مشوي + خضار طازجة + صوص خاص</p>
+            <strong>650 دج</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">قائمتنا</span>
+            <h2>اختر وجبتك المفضلة</h2>
+          </div>
+          <p>أسعار تجريبية يمكنك تعديلها بسهولة داخل ملف <b>script.js</b>.</p>
+        </div>
+
+        <div class="categories">
+          <button class="cat active" data-filter="all">الكل</button>
+          <button class="cat" data-filter="pita">بيتا</button>
+          <button class="cat" data-filter="burger">برغر</button>
+          <button class="cat" data-filter="sides">إضافات</button>
+          <button class="cat" data-filter="drinks">مشروبات</button>
+        </div>
+
+        <div class="products">
+          <article class="product" data-category="pita">
+            <div class="product-img">🥙</div><span class="tag">الأكثر طلبًا</span>
+            <h3>Chicken Pita</h3><p>دجاج مشوي، خس، طماطم، جبن وصوص خاص.</p>
+            <div class="product-bottom"><strong>650 دج</strong><button onclick="addToOrder('Chicken Pita',650)">أضف للطلب</button></div>
+          </article>
+          <article class="product" data-category="pita">
+            <div class="product-img">🌯</div>
+            <h3>Beef Pita</h3><p>لحم بقري متبل، خضار طازجة وصوص مميز.</p>
+            <div class="product-bottom"><strong>750 دج</strong><button onclick="addToOrder('Beef Pita',750)">أضف للطلب</button></div>
+          </article>
+          <article class="product" data-category="burger">
+            <div class="product-img">🍔</div>
+            <h3>Pita Burger</h3><p>برغر لحم، جبن، خس، بصل وصوص البيت.</p>
+            <div class="product-bottom"><strong>700 دج</strong><button onclick="addToOrder('Pita Burger',700)">أضف للطلب</button></div>
+          </article>
+          <article class="product" data-category="sides">
+            <div class="product-img">🍟</div>
+            <h3>بطاطا مقلية</h3><p>بطاطا مقرمشة مع الصوص الذي تختاره.</p>
+            <div class="product-bottom"><strong>250 دج</strong><button onclick="addToOrder('بطاطا مقلية',250)">أضف للطلب</button></div>
+          </article>
+          <article class="product" data-category="sides">
+            <div class="product-img">🧀</div>
+            <h3>Cheese Fries</h3><p>بطاطا مقرمشة مع جبن وصوص خاص.</p>
+            <div class="product-bottom"><strong>350 دج</strong><button onclick="addToOrder('Cheese Fries',350)">أضف للطلب</button></div>
+          </article>
+          <article class="product" data-category="drinks">
+            <div class="product-img">🥤</div>
+            <h3>مشروب غازي</h3><p>اختر مشروبك المفضل مع وجبتك.</p>
+            <div class="product-bottom"><strong>150 دج</strong><button onclick="addToOrder('مشروب غازي',150)">أضف للطلب</button></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container about-grid">
+        <div>
+          <span class="eyebrow">من نحن</span>
+          <h2>طعم بسيط، تجربة لا تُنسى.</h2>
+          <p>Pita Pit 2 هو نموذج موقع مطعم عصري. يمكنك تغيير الاسم، الشعار، الصور، الأسعار، العنوان ورقم الهاتف بسهولة.</p>
+          <div class="features">
+            <div>🥬 <b>مكونات طازجة</b><small>اختيارات يومية</small></div>
+            <div>👨‍🍳 <b>تحضير بعناية</b><small>جودة في كل طلب</small></div>
+            <div>⚡ <b>خدمة سريعة</b><small>لا تنتظر طويلًا</small></div>
+          </div>
+        </div>
+        <div class="about-box">
+          <div class="big-icon">🥙</div>
+          <h3>PITA PIT 2</h3>
+          <p>نكهة تستحق التجربة</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">تواصل معنا</span><h2>اطلب أو اسألنا</h2></div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card"><span>📍</span><div><b>العنوان</b><p>اكتب عنوان المطعم هنا</p></div></div>
+          <div class="contact-card"><span>📞</span><div><b>الهاتف</b><p>0550 00 00 00</p></div></div>
+          <div class="contact-card"><span>🕐</span><div><b>أوقات العمل</b><p>10:00 — 23:00</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="cart" id="cart">
+    <div><span>🛒</span><b id="cartCount">0</b></div>
+    <div class="cart-info"><strong>طلبك</strong><span id="cartTotal">0 دج</span></div>
+    <button onclick="showOrder()">مراجعة الطلب</button>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="close" onclick="closeOrder()">×</button>
+      <h2>طلبك</h2>
+      <div id="orderItems"></div>
+      <div class="total-row"><span>المجموع</span><strong id="modalTotal">0 دج</strong></div>
+      <a id="whatsapp" class="whatsapp" target="_blank">إرسال الطلب عبر واتساب</a>
+      <p class="hint">غيّر رقم واتساب داخل <b>script.js</b> قبل النشر.</p>
+    </div>
+  </div>
+
+  <footer><div class="container"><span>© 2026 Pita Pit 2</span><span>صُنع بحب ❤️</span></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
